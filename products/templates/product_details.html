@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="py-24 bg-gradient-to-b from-gray-950 to-gray-900 min-h-screen">
+
+    <div class="max-w-6xl mx-auto px-6">
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+
+            <!-- PRODUCT IMAGE -->
+            <div class="rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+
+                {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full object-cover">
+                {% else %}
+                <div class="h-96 flex items-center justify-center bg-gray-900 text-gray-500">
+                    No Image Available
+                </div>
+                {% endif %}
+
+            </div>
+
+            <!-- PRODUCT INFORMATION -->
+            <div>
+
+                <h1 class="text-5xl font-extrabold mb-5">
+                    <span class="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500
+                                 bg-clip-text text-transparent">
+                        {{ product.name }}
+                    </span>
+                </h1>
+
+                <div class="text-3xl font-bold text-orange-400 mb-8">
+                    ₹{{ product.price }}
+                </div>
+
+                <div class="text-gray-300 text-lg leading-relaxed mb-10">
+                    {{ product.description }}
+                </div>
+
+                <!-- BUTTONS -->
+                <div class="flex gap-4">
+
+                    <!-- ADD TO CART -->
+                    <button type="button" class="px-8 py-3 rounded-lg font-semibold
+                                   border border-orange-500 text-orange-400
+                                   hover:bg-orange-500 hover:text-white
+                                   transition duration-300
+                                   shadow-lg hover:shadow-orange-500/40">
+
+                        Add To Cart
+
+                    </button>
+
+                    <!-- BUY NOW -->
+                    <button type="button" class="px-8 py-3 rounded-lg font-semibold
+                                   border border-green-500 text-green-400
+                                   hover:bg-green-500 hover:text-white
+                                   transition duration-300
+                                   shadow-lg hover:shadow-green-500/40">
+
+                        Buy Now
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

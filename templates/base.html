@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamer's Island</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-gray-950 text-white overflow-x-hidden">
+
+    {% include 'navbar.html' %}
+
+    {% if messages %}
+    <div id="message-container" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-lg space-y-3">
+
+        {% for message in messages %}
+        <div class="msg flex items-center justify-between px-5 py-3 rounded-xl shadow-lg backdrop-blur-md
+            {% if message.tags == 'success' %} bg-green-500/90
+            {% elif message.tags == 'error' %} bg-red-500/90
+            {% else %} bg-gray-800/90
+            {% endif %}">
+
+            <span class="text-sm font-medium">{{ message }}</span>
+
+            <button onclick="this.parentElement.remove()" class="ml-4 text-white/80 hover:text-white text-lg leading-none">
+                &times;
+            </button>
+
+        </div>
+        {% endfor %}
+
+    </div>
+    {% endif %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <script>
+        setTimeout(() => {
+            const msgs = document.querySelectorAll('.msg');
+            msgs.forEach(el => {
+                el.style.transition = "opacity 0.5s";
+                el.style.opacity = "0";
+                setTimeout(() => el.remove(), 500);
+            });
+        }, 2000);
+    </script>
+
+</body>
+</html>

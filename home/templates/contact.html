@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="relative w-full py-28 overflow-hidden">
+
+    <div class="absolute inset-0 flex z-0 w-full h-full">
+        <img src="{% static 'images/bgimg.jpg' %}" class="w-1/2 h-full object-cover scale-110">
+        <img src="{% static 'images/backgroundnew.jpg' %}" class="w-1/2 h-full object-cover scale-110">
+    </div>
+
+    <div class="absolute inset-0 bg-gradient-to-r from-black via-purple-900/80 to-black z-10"></div>
+
+    <div class="relative z-20 max-w-5xl mx-auto px-6 text-center">
+
+        <h1 class="text-5xl md:text-6xl font-bold mb-8">
+            Get In <span class="text-orange-500">Touch</span>
+        </h1>
+
+        <p class="text-gray-300 text-lg leading-relaxed">
+            You may follow our socials for frequent updates, exclusive deals, and announcements.
+            If you need assistance, feel free to reach out to us—we’re always ready to help.
+        </p>
+
+        <p class="text-gray-400 mt-6 text-lg leading-relaxed">
+            Email us at <span class="text-orange-400">gamerisland@gmail.com</span>  
+            or call our customer care at <span class="text-orange-400">+91 74XXX-XXX64</span>.  
+            Whether it’s a query, issue, or feedback—we’ve got you covered.
+        </p>
+
+    </div>
+</section>
+
+<!-- CONTACT CARDS -->
+<section class="py-20 bg-gray-950">
+    <div class="max-w-6xl mx-auto px-6">
+
+        <div class="grid md:grid-cols-3 gap-10">
+
+            <!-- EMAIL -->
+            <div class="group relative p-8 rounded-xl bg-white/10 backdrop-blur border border-white/20 
+                        transition duration-300 transform 
+                        hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(255,115,0,0.35)]">
+
+                <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-orange-500/10 to-pink-500/10 
+                            opacity-0 group-hover:opacity-100 transition duration-300"></div>
+
+                <div class="relative z-10 text-center">
+                    <i class="fa-solid fa-envelope text-4xl text-orange-400 mb-4 
+                              transition duration-300 group-hover:scale-125"></i>
+
+                    <h3 class="text-xl font-semibold mb-2">Email</h3>
+                    <p class="text-gray-400">gamerisland@gmail.com</p>
+                </div>
+            </div>
+
+            <!-- PHONE -->
+            <div class="group relative p-8 rounded-xl bg-white/10 backdrop-blur border border-white/20 
+                        transition duration-300 transform 
+                        hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(236,72,153,0.35)]">
+
+                <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 
+                            opacity-0 group-hover:opacity-100 transition duration-300"></div>
+
+                <div class="relative z-10 text-center">
+                    <i class="fa-solid fa-phone text-4xl text-pink-400 mb-4 
+                              transition duration-300 group-hover:scale-125"></i>
+
+                    <h3 class="text-xl font-semibold mb-2">Phone</h3>
+                    <p class="text-gray-400">+91 74XXX-XXX64</p>
+                </div>
+            </div>
+
+            <!-- SUPPORT -->
+            <div class="group relative p-8 rounded-xl bg-white/10 backdrop-blur border border-white/20 
+                        transition duration-300 transform 
+                        hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(168,85,247,0.35)]">
+
+                <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500/10 to-indigo-500/10 
+                            opacity-0 group-hover:opacity-100 transition duration-300"></div>
+
+                <div class="relative z-10 text-center">
+                    <i class="fa-solid fa-clock text-4xl text-purple-400 mb-4 
+                              transition duration-300 group-hover:scale-125"></i>
+
+                    <h3 class="text-xl font-semibold mb-2">Support</h3>
+                    <p class="text-gray-400">24/7 Customer Support</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="py-24 bg-gradient-to-b from-gray-900 to-gray-950">
+    <div class="max-w-4xl mx-auto px-6">
+
+        <h2 class="text-3xl font-bold text-center mb-10">Send Us a Message</h2>
+
+        <form class="space-y-6 bg-white/10 backdrop-blur p-10 rounded-xl border border-white/20">
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <input type="text" placeholder="Your Name"
+                       class="px-5 py-3 rounded-lg bg-gray-800 text-white outline-none">
+
+                <input type="email" placeholder="Your Email"
+                       class="px-5 py-3 rounded-lg bg-gray-800 text-white outline-none">
+            </div>
+
+            <input type="text" placeholder="Subject"
+                   class="w-full px-5 py-3 rounded-lg bg-gray-800 text-white outline-none">
+
+            <textarea rows="5" placeholder="Your Message"
+                      class="w-full px-5 py-3 rounded-lg bg-gray-800 text-white outline-none"></textarea>
+
+            <div class="text-center">
+                <button type="submit"
+                        class="px-8 py-3 rounded-full bg-orange-500 hover:bg-orange-600 transition font-semibold">
+                    Send Message
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-black border-t border-gray-800 mt-20">
+    <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-12">
+
+        <div>
+            <h3 class="text-lg font-semibold mb-4 text-white">Download Our App</h3>
+            <p class="text-gray-400 mb-4">For Both Android And IOS Devices</p>
+            <div class="flex gap-4">
+                <img src="{% static 'images/playstore.png' %}" class="h-10">
+                <img src="{% static 'images/appstore.png' %}" class="h-10">
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-xl font-bold text-orange-500 mb-4">Gamer's Island</h3>
+        </div>
+
+        <div>
+            <h3 class="text-lg font-semibold mb-4 text-white">Useful Links</h3>
+            <ul class="space-y-2 text-gray-400">
+                <li><a href="#">Vouchers</a></li>
+                <li><a href="#">Return Policy</a></li>
+                <li><a href="#">Join Affiliates</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="text-lg font-semibold mb-4 text-white">Follow Us</h3>
+            <div class="flex gap-4 text-2xl">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-linkedin"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-center py-6 text-gray-500 text-sm border-t border-gray-800">
+        © 2026 - Gamer's Island
+    </div>
+</footer>
+
+{% endblock %}

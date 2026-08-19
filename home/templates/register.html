@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- HIDE NAVBAR ONLY ON THIS PAGE -->
+<style>
+    nav { display: none !important; }
+</style>
+
+<section class="relative min-h-[90vh] flex items-center justify-center px-4 overflow-hidden">
+
+    <!-- BACKGROUND -->
+    <div class="absolute inset-0 flex z-0 w-full h-full">
+        <img src="{% static 'images/bgimg.jpg' %}" class="w-1/2 h-full object-cover scale-110">
+        <img src="{% static 'images/backgroundnew.jpg' %}" class="w-1/2 h-full object-cover scale-110">
+    </div>
+
+    <div class="absolute inset-0 bg-gradient-to-r from-black via-purple-900/80 to-black z-10"></div>
+
+    <!-- FORM -->
+    <div class="relative z-20 w-full max-w-md 
+                bg-white/10 backdrop-blur-xl 
+                border border-white/20 
+                rounded-2xl p-8 shadow-2xl
+                transition duration-300 
+                hover:shadow-[0_0_40px_rgba(255,115,0,0.35)]">
+
+        <h2 class="text-3xl font-bold text-center text-white">
+            Create an Account
+        </h2>
+
+        <p class="text-center text-gray-300 text-sm mt-2">
+            Join Gamer's Island and start exploring
+        </p>
+
+        <form method="POST" class="mt-6 space-y-5">
+            {% csrf_token %}
+
+            <div>
+                <label class="block text-sm text-gray-300 mb-1">Username</label>
+                <input type="text" name="username"
+                    class="w-full px-4 py-2 rounded-xl bg-gray-900/80 text-white 
+                           border border-gray-700 outline-none 
+                           focus:ring-2 focus:ring-orange-500"
+                    placeholder="Choose a username" required>
+            </div>
+
+            <div>
+                <label class="block text-sm text-gray-300 mb-1">Email</label>
+                <input type="email" name="email"
+                    class="w-full px-4 py-2 rounded-xl bg-gray-900/80 text-white 
+                           border border-gray-700 outline-none 
+                           focus:ring-2 focus:ring-pink-500"
+                    placeholder="Enter email" required>
+            </div>
+
+            <div>
+                <label class="block text-sm text-gray-300 mb-1">Password</label>
+                <input type="password" name="password1"
+                    class="w-full px-4 py-2 rounded-xl bg-gray-900/80 text-white 
+                           border border-gray-700 outline-none 
+                           focus:ring-2 focus:ring-purple-500"
+                    placeholder="Create password" required>
+            </div>
+
+            <div>
+                <label class="block text-sm text-gray-300 mb-1">Confirm Password</label>
+                <input type="password" name="password2"
+                    class="w-full px-4 py-2 rounded-xl bg-gray-900/80 text-white 
+                           border border-gray-700 outline-none 
+                           focus:ring-2 focus:ring-purple-500"
+                    placeholder="Confirm password" required>
+            </div>
+
+            <button type="submit"
+                class="w-full py-2.5 rounded-xl font-semibold text-white
+                       bg-gradient-to-r from-orange-500 to-pink-500
+                       hover:from-pink-500 hover:to-orange-500
+                       transition duration-300 shadow-lg hover:shadow-orange-500/40">
+                Register
+            </button>
+        </form>
+
+        <p class="text-sm text-center text-gray-400 mt-6">
+            Already have an account?
+            <a href="{% url 'login' %}" 
+               class="text-orange-400 hover:underline font-medium">
+                Login
+            </a>
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

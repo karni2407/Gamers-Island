@@ -1,0 +1,259 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="relative w-full py-28 overflow-hidden">
+
+    <div class="absolute inset-0 flex z-0 w-full h-full">
+        <img src="{% static 'images/bgimg.jpg' %}" class="w-1/2 h-full object-cover scale-110">
+        <img src="{% static 'images/backgroundnew.jpg' %}" class="w-1/2 h-full object-cover scale-110">
+    </div>
+
+    <div class="absolute inset-0 bg-gradient-to-r from-black via-purple-900/80 to-black z-10"></div>
+
+    <div class="relative z-20 max-w-7xl mx-auto px-6">
+        <div class="max-w-3xl">
+
+            <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6 tracking-tight">
+                Looking For Cheap Games <br> 
+                <span class="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 bg-clip-text text-transparent">
+                    That Aren't Disappointing?
+                </span>
+            </h1>
+
+            <p class="text-gray-300 mb-8 text-lg leading-relaxed">
+                Nowadays, you may have noticed that some games are worth an unneccessary amount of money.<br>
+                You can't buy them because they aren't even worth buying.<br>
+                But what if we say we have a solution to all your problems?
+            </p>
+
+            <a href="#"
+               class="inline-block px-8 py-3 rounded-full font-semibold 
+                      bg-gradient-to-r from-orange-500 to-pink-500 
+                      hover:from-pink-500 hover:to-orange-500 
+                      transition duration-300 shadow-lg hover:shadow-pink-500/50 hover:scale-105">
+                Browse Games 
+            </a>
+
+        </div>
+    </div>
+
+</section>
+
+<!-- FEATURES -->
+<section class="py-24 bg-gradient-to-b from-gray-950 to-gray-900">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+
+        <h2 class="text-4xl font-bold mb-16 bg-gradient-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent">
+            Why Choose Us?
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-12">
+
+            <!-- CARD 1 -->
+            <div class="group p-10 rounded-xl backdrop-blur-lg bg-white/10 border border-white/20 shadow-xl 
+                        transition duration-300 hover:scale-105 
+                        hover:shadow-[0_0_30px_rgba(255,115,0,0.35)]">
+                <h3 class="text-xl font-semibold mb-3 text-orange-400">Affordable</h3>
+                <p class="text-gray-300">Games priced fairly—not ridiculously.</p>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="group p-10 rounded-xl backdrop-blur-lg bg-white/10 border border-white/20 shadow-xl 
+                        transition duration-300 hover:scale-105 
+                        hover:shadow-[0_0_30px_rgba(236,72,153,0.35)]">
+                <h3 class="text-xl font-semibold mb-3 text-pink-400">Curated</h3>
+                <p class="text-gray-300">Only quality titles, no clutter.</p>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="group p-10 rounded-xl backdrop-blur-lg bg-white/10 border border-white/20 shadow-xl 
+                        transition duration-300 hover:scale-105 
+                        hover:shadow-[0_0_30px_rgba(168,85,247,0.35)]">
+                <h3 class="text-xl font-semibold mb-3 text-purple-400">Fast</h3>
+                <p class="text-gray-300">Smooth and quick buying experience.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED GAME -->
+<section class="max-w-7xl mx-auto px-6 py-24">
+
+    <div class="grid md:grid-cols-2 gap-8 mb-10">
+
+        <div>
+            <img src="{% static 'images/GTA6.jpg' %}"
+                 class="rounded-xl shadow-2xl border border-gray-800">
+        </div>
+
+        <div class="relative">
+
+            <video id="mk-video"
+                   autoplay muted loop playsinline
+                   class="w-full h-full object-cover rounded-xl shadow-2xl border border-gray-800">
+
+                <source src="{% static 'videos/GTA6 trailer.mp4' %}" type="video/mp4">
+
+            </video>
+
+            <div class="absolute bottom-4 right-4 flex gap-2">
+
+                <button id="video-toggle"
+                        class="bg-black/70 px-4 py-2 rounded-full text-sm hover:bg-orange-500 transition">
+                    Pause
+                </button>
+
+                <button id="audio-toggle"
+                        class="bg-black/70 px-4 py-2 rounded-full text-sm hover:bg-orange-500 transition">
+                    Unmute
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="text-center max-w-3xl mx-auto">
+
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">
+            <span class="bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent">
+                Grand Theft Auto VI
+            </span>
+        </h2>
+
+        <p class="text-gray-300 mb-6 text-lg leading-relaxed">
+            Return to the criminal underworld of Vice City in a sprawling open-world adventure following Jason and Lucia as they navigate crime, chaos, and life on the run across the state of Leonida.
+        </p>
+
+        <a href="#"
+           class="inline-block px-8 py-3 rounded-full font-semibold 
+                  bg-gradient-to-r from-orange-500 to-pink-500 
+                  hover:from-pink-500 hover:to-orange-500 
+                  transition duration-300 shadow-lg hover:shadow-orange-500/50 hover:scale-105">
+            Explore More 
+        </a>
+
+    </div>
+
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="py-24 bg-gradient-to-b from-gray-900 to-gray-950">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+
+        <h2 class="text-4xl font-bold mb-16 text-white">
+            Testimonials From Some Of Our Popular Customers
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-12">
+
+            <!-- USER 1 -->
+            <div class="group p-8 rounded-xl backdrop-blur-lg bg-white/10 border border-white/20 shadow-lg 
+                        transition duration-300 hover:scale-105 
+                        hover:shadow-[0_0_30px_rgba(255,115,0,0.35)]">
+                <img src="{% static 'images/user1.jpg' %}" class="w-28 h-28 rounded-full mx-auto mb-4 border-4 border-pink-500/50">
+                <p class="text-gray-300 mb-4">Quick delivery, affordable prices and great quality. What more could you want?</p>
+                <h3 class="font-semibold text-lg">IShowSpeed</h3>
+            </div>
+
+            <!-- USER 2 -->
+            <div class="group p-8 rounded-xl backdrop-blur-lg bg-white/10 border border-white/20 shadow-lg 
+                        transition duration-300 hover:scale-105 
+                        hover:shadow-[0_0_30px_rgba(236,72,153,0.35)]">
+                <img src="{% static 'images/user2.jpg' %}" class="w-28 h-28 rounded-full mx-auto mb-4 border-4 border-orange-500/50">
+                <p class="text-gray-300 mb-4">I spend all day playing my favourite games from when i was a kid thanks to Gamer's Island. Best place to buy cheap games. Haven't touched grass in weeks.</p>
+                <h3 class="font-semibold text-lg">Andrew Tate</h3>
+            </div>
+
+            <!-- USER 3 -->
+            <div class="group p-8 rounded-xl backdrop-blur-lg bg-white/10 border border-white/20 shadow-lg 
+                        transition duration-300 hover:scale-105 
+                        hover:shadow-[0_0_30px_rgba(168,85,247,0.35)]">
+                <img src="{% static 'images/user3.jpeg' %}" class="w-28 h-28 rounded-full mx-auto mb-4 border-4 border-purple-500/50">
+                <p class="text-gray-300 mb-4">Amongst the greatest digital stores for purchasing old games that were once the pinnacle of the craft as well as newer entries in the gaming market.</p>
+                <h3 class="font-semibold text-lg">Elon Musk</h3>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER unchanged -->
+<footer class="bg-black border-t border-gray-800 mt-20">
+    <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-12">
+
+        <div>
+            <h3 class="text-lg font-semibold mb-4 text-white">Download Our App</h3>
+            <p class="text-gray-400 mb-4">For Both Android And IOS Devices</p>
+            <div class="flex gap-4">
+                <img src="{% static 'images/playstore.png' %}" class="h-10 hover:scale-110 transition">
+                <img src="{% static 'images/appstore.png' %}" class="h-10 hover:scale-110 transition">
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-xl font-bold bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent mb-4">
+                Gamer's Island
+            </h3>
+        </div>
+
+        <div>
+            <h3 class="text-lg font-semibold mb-4 text-white">Useful Links</h3>
+            <ul class="space-y-2 text-gray-400">
+                <li><a href="#" class="hover:text-orange-400">Vouchers</a></li>
+                <li><a href="#" class="hover:text-orange-400">Return Policy</a></li>
+                <li><a href="#" class="hover:text-orange-400">Join Affiliates</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="text-lg font-semibold mb-4 text-white">Follow Us</h3>
+            <div class="flex gap-4 text-2xl">
+                <i class="fa-brands fa-facebook hover:text-blue-500"></i>
+                <i class="fa-brands fa-instagram hover:text-pink-500"></i>
+                <i class="fa-brands fa-twitter hover:text-sky-400"></i>
+                <i class="fa-brands fa-linkedin hover:text-blue-400"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-center py-6 text-gray-500 text-sm border-t border-gray-800">
+        © 2026 - Gamer's Island
+    </div>
+</footer>
+
+<!-- SCRIPT unchanged -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const video = document.getElementById("mk-video");
+    const playBtn = document.getElementById("video-toggle");
+    const audioBtn = document.getElementById("audio-toggle");
+
+    if (!video || !playBtn || !audioBtn) return;
+
+    playBtn.addEventListener("click", () => {
+        if (video.paused) {
+            video.play();
+            playBtn.innerText = "Pause";
+        } else {
+            video.pause();
+            playBtn.innerText = "Play";
+        }
+    });
+
+    audioBtn.addEventListener("click", () => {
+        video.muted = !video.muted;
+        audioBtn.innerText = video.muted ? "Unmute" : "Mute";
+    });
+
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="py-24 bg-gradient-to-b from-gray-950 to-gray-900 min-h-screen">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <!-- HEADER -->
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-extrabold mb-4">
+                <span class="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 bg-clip-text text-transparent">
+                    Our Games
+                </span>
+            </h1>
+
+            <p class="text-gray-400 text-lg">
+                Browse our collection of games at affordable prices.
+            </p>
+        </div>
+
+        <!-- PRODUCTS -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+            {% for product in products %}
+
+            <a href="{% url 'product_details' product.slug %}" class="block">
+
+                <div class="group rounded-xl overflow-hidden bg-white/10 border border-white/10
+                            shadow-xl backdrop-blur-lg transition duration-300
+                            hover:scale-105 hover:border-pink-500/40
+                            hover:shadow-[0_0_30px_rgba(236,72,153,0.25)]">
+
+                    <!-- IMAGE -->
+                    <div class="h-64 overflow-hidden bg-gray-900">
+
+                        {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover transition duration-500
+                                    group-hover:scale-110">
+                        {% else %}
+                        <div class="w-full h-full flex items-center justify-center text-gray-500">
+                            No Image
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+                    <!-- INFO -->
+                    <div class="p-6">
+
+                        <h2 class="text-xl font-bold mb-4">
+                            {{ product.name }}
+                        </h2>
+
+                        <!-- PRICE -->
+                        <div class="mb-5">
+                            <span class="text-xl font-semibold text-orange-400">
+                                ₹{{ product.price }}
+                            </span>
+                        </div>
+
+                        <!-- BUTTONS -->
+                        <div class="flex gap-3">
+
+                            <button type="button" class="flex-1 px-4 py-2 rounded-lg font-semibold
+                                           border border-orange-500 text-orange-400
+                                           hover:bg-orange-500 hover:text-white
+                                           transition duration-300">
+                                Add to Cart
+                            </button>
+
+                            <button type="button" class="flex-1 px-4 py-2 rounded-lg font-semibold
+                                           border border-green-500 text-green-400
+                                           hover:bg-green-500 hover:text-white
+                                           transition duration-300">
+                                Buy Now
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+            {% empty %}
+
+            <div class="col-span-full text-center py-20">
+                <h2 class="text-2xl font-semibold text-gray-400">
+                    No games available right now.
+                </h2>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
