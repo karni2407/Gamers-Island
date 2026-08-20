@@ -41,32 +41,42 @@
                 </div>
 
                 <!-- BUTTONS -->
-                    <form method="POST" action="{% url 'add_to_cart' product.slug %}">
-                    {% csrf_token %}
-                    <div class="flex gap-4">
+                <div class="flex gap-4">
 
                     <!-- ADD TO CART -->
-                    <button type="button" class="px-8 py-3 rounded-lg font-semibold
+                    <form method="POST" action="{% url 'add_to_cart' product.slug %}">
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="px-8 py-3 rounded-lg font-semibold
                                    border border-orange-500 text-orange-400
                                    hover:bg-orange-500 hover:text-white
                                    transition duration-300
-                                   shadow-lg hover:shadow-orange-500/40">
+                                   shadow-lg hover:shadow-orange-500/40"
+                        >
+                            Add To Cart
+                        </button>
 
-                        Add To Cart
-
-                    </button>
                     </form>
 
                     <!-- BUY NOW -->
-                    <button type="button" class="px-8 py-3 rounded-lg font-semibold
+                    <form method="GET" action="{% url 'checkout' %}">
+
+                        <input type="hidden" name="buy_now" value="{{ product.slug }}">
+
+                        <button
+                            type="submit"
+                            class="px-8 py-3 rounded-lg font-semibold
                                    border border-green-500 text-green-400
                                    hover:bg-green-500 hover:text-white
                                    transition duration-300
-                                   shadow-lg hover:shadow-green-500/40">
+                                   shadow-lg hover:shadow-green-500/40"
+                        >
+                            Buy Now
+                        </button>
 
-                        Buy Now
-
-                    </button>
+                    </form>
 
                 </div>
 

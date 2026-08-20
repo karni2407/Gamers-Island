@@ -5,179 +5,220 @@
 
 <section class="py-24 bg-gradient-to-b from-gray-950 to-gray-900 min-h-screen">
 
-    <div class="max-w-5xl mx-auto px-6">
+  <div class="max-w-5xl mx-auto px-6">
 
-        <!-- HEADER -->
-        <div class="text-center mb-12">
-            <h1 class="text-5xl font-extrabold mb-4">
-                <span class="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 bg-clip-text text-transparent">
-                    Your Cart
-                </span>
-            </h1>
+    <!-- HEADER -->
+    <div class="text-center mb-12">
 
-            <p class="text-gray-400 text-lg">
-                Review the games you've added to your cart.
-            </p>
-        </div>
+      <h1 class="text-5xl font-extrabold mb-4">
+        <span
+          class="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 bg-clip-text text-transparent"
+        >
+          Your Cart
+        </span>
+      </h1>
 
-        {% if cart.items.all %}
-
-        <div class="space-y-5">
-
-            {% for item in cart.items.all %}
-
-            <div id="cart-item-{{ item.product.slug }}" class="flex items-center gap-6 p-5 rounded-xl
-                        bg-white/10 border border-white/10
-                        shadow-lg backdrop-blur-lg">
-
-                <!-- IMAGE -->
-                <div class="w-28 h-28 rounded-lg overflow-hidden bg-gray-900 flex-shrink-0">
-
-                    {% if item.product.image %}
-                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}"
-                        class="w-full h-full object-cover">
-                    {% endif %}
-
-                </div>
-
-                <!-- PRODUCT INFO -->
-                <div class="flex-1">
-
-                    <h2 class="text-xl font-bold mb-2">
-                        {{ item.product.name }}
-                    </h2>
-
-                    <div class="flex items-center gap-3">
-
-                        <span class="text-gray-400">
-                            ₹{{ item.product.price }}
-                        </span>
-
-                        <div class="flex items-center border border-gray-700 rounded-lg overflow-hidden">
-
-                            <button type="button"
-                                onclick="updateQuantity('{% url 'decrease_quantity' item.product.slug %}', '{{ item.product.slug }}')"
-                                class="px-3 py-1 hover:bg-gray-700 transition">
-                                −
-                            </button>
-
-                            <span id="quantity-{{ item.product.slug }}" class="px-4 py-1 border-x border-gray-700">
-                                {{ item.quantity }}
-                            </span>
-
-                            <button type="button"
-                                onclick="updateQuantity('{% url 'increase_quantity' item.product.slug %}', '{{ item.product.slug }}')"
-                                class="px-3 py-1 hover:bg-gray-700 transition">
-                                +
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                    <p id="item-total-{{ item.product.slug }}" class="text-orange-400 font-semibold mt-2">
-                        ₹{{ item.total_price }}
-                    </p>
-
-                </div>
-
-                <!-- REMOVE -->
-                <a href="{% url 'remove_from_cart' item.product.slug %}" class="px-4 py-2 rounded-lg border border-red-500
-                          text-red-400 hover:bg-red-500 hover:text-white
-                          transition duration-300">
-                    Remove
-                </a>
-
-            </div>
-
-            {% endfor %}
-
-        </div>
-
-        <!-- CHECKOUT -->
-        <div class="mt-10 p-6 rounded-xl bg-white/10 border border-white/10">
-
-            <div class="flex justify-between items-center mb-6">
-
-                <span class="text-xl font-semibold">
-                    Total
-                </span>
-
-                <span id="cart-total" class="text-2xl font-bold text-orange-400">
-                    ₹{{ cart.total_price }}
-                </span>
-
-            </div>
-
-            <div class="flex gap-4">
-
-                <!-- CONTINUE SHOPPING -->
-                <a href="{% url 'products' %}" class="flex-1 text-center py-3 rounded-lg font-semibold
-                          border border-orange-500 text-orange-400
-                          hover:bg-orange-500 hover:text-white
-                          transition duration-300">
-                    Continue Shopping
-                </a>
-
-                <!-- PROCEED TO CHECKOUT -->
-                <button type="button" class="flex-1 py-3 rounded-lg font-semibold
-                               bg-green-500 hover:bg-green-600
-                               transition duration-300">
-                    Proceed to Checkout
-                </button>
-
-            </div>
-
-        </div>
-
-        {% else %}
-
-        <div class="text-center py-20">
-
-            <h2 class="text-2xl font-semibold text-gray-400 mb-6">
-                Your cart is empty.
-            </h2>
-
-            <a href="{% url 'products' %}" class="inline-block px-6 py-3 rounded-lg
-                      bg-orange-500 hover:bg-orange-600
-                      transition duration-300">
-                Browse Games
-            </a>
-
-        </div>
-
-        {% endif %}
+      <p class="text-gray-400 text-lg">
+        Review the games you've added to your cart.
+      </p>
 
     </div>
+
+    {% if cart.items.all %}
+
+    <div class="space-y-5">
+
+      {% for item in cart.items.all %}
+
+      <div
+        id="cart-item-{{ item.product.slug }}"
+        class="flex items-center gap-6 p-5 rounded-xl bg-white/10 border border-white/10 shadow-lg backdrop-blur-lg"
+      >
+
+        <!-- IMAGE -->
+        <div
+          class="w-28 h-28 rounded-lg overflow-hidden bg-gray-900 flex-shrink-0"
+        >
+
+          {% if item.product.image %}
+
+          <img
+            src="{{ item.product.image.url }}"
+            alt="{{ item.product.name }}"
+            class="w-full h-full object-cover"
+          />
+
+          {% endif %}
+
+        </div>
+
+        <!-- PRODUCT INFO -->
+        <div class="flex-1">
+
+          <h2 class="text-xl font-bold mb-2">
+            {{ item.product.name }}
+          </h2>
+
+          <div class="flex items-center gap-3">
+
+            <span class="text-gray-400">
+              ₹{{ item.product.price }}
+            </span>
+
+            <div
+              class="flex items-center border border-gray-700 rounded-lg overflow-hidden"
+            >
+
+              <button
+                type="button"
+                onclick="updateQuantity('{% url 'decrease_quantity' item.product.slug %}', '{{ item.product.slug }}')"
+                class="px-3 py-1 hover:bg-gray-700 transition"
+              >
+                −
+              </button>
+
+              <span
+                id="quantity-{{ item.product.slug }}"
+                class="px-4 py-1 border-x border-gray-700"
+              >
+                {{ item.quantity }}
+              </span>
+
+              <button
+                type="button"
+                onclick="updateQuantity('{% url 'increase_quantity' item.product.slug %}', '{{ item.product.slug }}')"
+                class="px-3 py-1 hover:bg-gray-700 transition"
+              >
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+          <p
+            id="item-total-{{ item.product.slug }}"
+            class="text-orange-400 font-semibold mt-2"
+          >
+            ₹{{ item.total_price }}
+          </p>
+
+        </div>
+
+        <!-- REMOVE -->
+        <a
+          href="{% url 'remove_from_cart' item.product.slug %}"
+          class="px-4 py-2 rounded-lg border border-red-500 text-red-400 hover:bg-red-500 hover:text-white transition duration-300"
+        >
+          Remove
+        </a>
+
+      </div>
+
+      {% endfor %}
+
+    </div>
+
+    <!-- CHECKOUT -->
+    <div class="mt-10 p-6 rounded-xl bg-white/10 border border-white/10">
+
+      <div class="flex justify-between items-center mb-6">
+
+        <span class="text-xl font-semibold">
+          Total
+        </span>
+
+        <span
+          id="cart-total"
+          class="text-2xl font-bold text-orange-400"
+        >
+          ₹{{ cart.total_price }}
+        </span>
+
+      </div>
+
+      <div class="flex gap-4">
+
+        <!-- CONTINUE SHOPPING -->
+        <a
+          href="{% url 'products' %}"
+          class="flex-1 text-center py-3 rounded-lg font-semibold border border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white transition duration-300"
+        >
+          Continue Shopping
+        </a>
+
+        <!-- PROCEED TO CHECKOUT -->
+        <a
+          href="{% url 'checkout' %}"
+          class="flex-1 text-center py-3 rounded-lg font-semibold bg-green-500 hover:bg-green-600 transition duration-300"
+        >
+          Proceed to Checkout
+        </a>
+
+      </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="text-center py-20">
+
+      <h2 class="text-2xl font-semibold text-gray-400 mb-6">
+        Your cart is empty.
+      </h2>
+
+      <a
+        href="{% url 'products' %}"
+        class="inline-block px-6 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 transition duration-300"
+      >
+        Browse Games
+      </a>
+
+    </div>
+
+    {% endif %}
+
+  </div>
 
 </section>
 
 <script>
-    function updateQuantity(url, slug) {
 
-        fetch(url, {
-            method: "POST",
-            headers: {
-                "X-CSRFToken": "{{ csrf_token }}",
-                "X-Requested-With": "XMLHttpRequest"
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
+function updateQuantity(url, slug) {
 
-                if (data.removed) {
-                    document.getElementById("cart-item-" + slug).remove();
-                } else {
-                    document.getElementById("quantity-" + slug).textContent = data.quantity;
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "X-CSRFToken": "{{ csrf_token }}",
+      "X-Requested-With": "XMLHttpRequest",
+    },
+  })
 
-                    document.getElementById("item-total-" + slug).textContent =
-                        "₹" + data.item_total;
-                }
+  .then((response) => response.json())
 
-                document.getElementById("cart-total").textContent =
-                    "₹" + data.cart_total;
-            });
+  .then((data) => {
+
+    if (data.removed) {
+
+      document.getElementById("cart-item-" + slug).remove();
+
+    } else {
+
+      document.getElementById("quantity-" + slug).textContent =
+        data.quantity;
+
+      document.getElementById("item-total-" + slug).textContent =
+        "₹" + data.item_total;
+
     }
+
+    document.getElementById("cart-total").textContent =
+      "₹" + data.cart_total;
+
+  });
+
+}
+
 </script>
 
 {% endblock %}
