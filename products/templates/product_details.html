@@ -41,7 +41,9 @@
                 </div>
 
                 <!-- BUTTONS -->
-                <div class="flex gap-4">
+                    <form method="POST" action="{% url 'add_to_cart' product.slug %}">
+                    {% csrf_token %}
+                    <div class="flex gap-4">
 
                     <!-- ADD TO CART -->
                     <button type="button" class="px-8 py-3 rounded-lg font-semibold
@@ -53,6 +55,7 @@
                         Add To Cart
 
                     </button>
+                    </form>
 
                     <!-- BUY NOW -->
                     <button type="button" class="px-8 py-3 rounded-lg font-semibold
