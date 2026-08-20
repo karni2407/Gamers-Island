@@ -97,6 +97,29 @@
 
         </div>
 
+        <!-- PAGINATION -->
+        <div class="flex justify-center items-center gap-3 mt-12">
+
+            {% if products.has_previous %}
+            <a href="?page={{ products.previous_page_number }}" class="px-4 py-2 rounded-lg border border-gray-700
+                      hover:bg-orange-500 transition">
+                Previous
+            </a>
+            {% endif %}
+
+            <span class="px-4 py-2 text-gray-400">
+                Page {{ products.number }} of {{ products.paginator.num_pages }}
+            </span>
+
+            {% if products.has_next %}
+            <a href="?page={{ products.next_page_number }}" class="px-4 py-2 rounded-lg border border-gray-700
+                      hover:bg-orange-500 transition">
+                Next
+            </a>
+            {% endif %}
+
+        </div>
+
     </div>
 
 </section>
