@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.http import JsonResponse
+import re
 
 from .models import Cart, CartItem, Product, Order, OrderItem
 
@@ -143,12 +144,76 @@ def checkout(request):
     # PURCHASE
     if request.method == "POST":
 
-        name = request.POST.get("name")
-        phone = request.POST.get("phone")
-        address = request.POST.get("address")
-        payment_method = request.POST.get("payment_method")
+        name = request.POST.get("name", "").strip()
+        phone = request.POST.get("phone", "").strip()
+        address = request.POST.get("address", "").strip()
+        payment_method = request.POST.get("payment_method", "").strip()
 
+        upi_id = request.POST.get("upi_id", "").strip()
+        cardholder_name = request.POST.get("cardholder_name", "").strip()
+        card_number = request.POST.get("card_number", "").strip()
+        expiry = request.POST.get("expiry", "").strip()
+        cvv = request.POST.get("cvv", "").strip()
+        bank = request.POST.get("bank", "").strip()
+
+        error = None
+
+        # CUSTOMER DETAILS
         if not name or not phone or not address or not payment_method:
+
+            error = "Please fill in all required fields."
+
+        elif not re.fullmatch(r"[A-Za-z ]{2,50}", name):
+
+            error = "Please enter a valid name using only letters and spaces."
+
+        elif not re.fullmatch(r"[6-9][0-9]{9}", phone):
+
+            error = "Please enter a valid 10-digit Indian mobile number."
+
+        elif len(address) < 10 or len(address) > 300:
+
+            error = "Please enter a valid address between 10 and 300 characters."
+
+        # UPI
+        elif payment_method == "upi":
+
+            if not re.fullmatch(r"[A-Za-z0-9._-]+@[A-Za-z0-9.-]+", upi_id):
+
+                error = "Please enter a valid UPI ID."
+
+        # DEBIT CARD / CREDIT CARD
+        elif payment_method in ["debit_card", "credit_card"]:
+
+            if not re.fullmatch(r"[A-Za-z ]{2,50}", cardholder_name):
+
+                error = "Please enter a valid cardholder name."
+
+            elif not re.fullmatch(r"[0-9]{16}", card_number):
+
+                error = "Card number must contain exactly 16 digits."
+
+            elif not re.fullmatch(r"(0[1-9]|1[0-2])/[0-9]{2}", expiry):
+
+                error = "Expiry date must be in MM/YY format."
+
+            elif not re.fullmatch(r"[0-9]{3}", cvv):
+
+                error = "CVV must contain exactly 3 digits."
+
+        # NET BANKING
+        elif payment_method == "netbanking":
+
+            if not bank:
+
+                error = "Please select your bank."
+
+        # INVALID PAYMENT METHOD
+        elif payment_method != "cod":
+
+            error = "Please select a valid payment method."
+
+        if error:
 
             return render(
                 request,
@@ -157,10 +222,11 @@ def checkout(request):
                     "cart": cart,
                     "checkout_items": checkout_items,
                     "total_price": total_price,
-                    "error": "Please fill in all required fields.",
+                    "error": error,
                 },
             )
 
+        # PAYMENT DETAILS ARE VALIDATED BUT NOT SAVED.
         order = Order.objects.create(
             user=request.user,
             name=name,
@@ -174,11 +240,13 @@ def checkout(request):
         for item in checkout_items:
 
             if buy_now:
+
                 product = item["product"]
                 quantity = item["quantity"]
                 price = item["product"].price
 
             else:
+
                 product = item.product
                 quantity = item.quantity
                 price = item.product.price
@@ -190,6 +258,7 @@ def checkout(request):
         # Empty cart only when checking out the cart.
         # Buy Now does not affect the cart.
         if not buy_now:
+
             cart.items.all().delete()
 
         return redirect("order_success", order_id=order.id)

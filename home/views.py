@@ -48,21 +48,34 @@ def register(request):
 
 
 def login(request):
+
     if request.user.is_authenticated:
         return redirect("homepage")
 
     if request.method == "POST":
+
         username = request.POST.get("username")
         password = request.POST.get("password")
 
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
+
             auth_login(request, user)
+
             messages.success(request, f"Welcome back, {user.username}!")
+
+            next_url = request.POST.get("next") or request.GET.get("next")
+
+            if next_url:
+                return redirect(next_url)
+
             return redirect("homepage")
+
         else:
+
             messages.error(request, "Invalid username or password")
+
             return render(request, "login.html")
 
     return render(request, "login.html")
