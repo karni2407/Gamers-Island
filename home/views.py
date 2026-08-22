@@ -3,17 +3,60 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
 from django.contrib import messages
 
+from .models import Subscription, CustomerSupport
+
 
 def homepage(request):
-    return render(request, 'index.html')
+    return render(request, "index.html")
 
 
 def about(request):
-    return render(request, 'about.html')
+
+    if request.method == "POST":
+
+        email = request.POST.get("email", "").strip()
+
+        if email:
+            Subscription.objects.create(email=email)
+            messages.success(
+                request, "You have successfully subscribed to our updates!"
+            )
+
+        else:
+            messages.error(request, "Please enter a valid email address.")
+
+        return redirect("about")
+
+    return render(request, "about.html")
 
 
 def contact(request):
-    return render(request, 'contact.html')
+
+    if request.method == "POST":
+
+        name = request.POST.get("name", "").strip()
+        email = request.POST.get("email", "").strip()
+        subject = request.POST.get("subject", "").strip()
+        message = request.POST.get("message", "").strip()
+
+        if name and email and subject and message:
+
+            CustomerSupport.objects.create(
+                name=name,
+                email=email,
+                subject=subject,
+                message=message,
+            )
+
+            messages.success(request, "Your message has been sent successfully!")
+
+        else:
+
+            messages.error(request, "Please fill in all the required fields.")
+
+        return redirect("contact")
+
+    return render(request, "contact.html")
 
 
 def register(request):
@@ -38,7 +81,9 @@ def register(request):
             messages.error(request, "Email already registered!")
             return render(request, "register.html")
 
-        user = User.objects.create_user(username=username, email=email, password=password1)
+        user = User.objects.create_user(
+            username=username, email=email, password=password1
+        )
         user.save()
 
         messages.success(request, "Account created successfully! Please login.")

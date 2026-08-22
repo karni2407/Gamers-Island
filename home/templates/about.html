@@ -1,138 +1,147 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} 
+{% load static %} 
+ 
+{% block content %} 
+ 
+<!-- HERO / ABOUT --> 
+<section class="relative w-full py-28 overflow-hidden"> 
+ 
+    <div class="absolute inset-0 flex z-0 w-full h-full"> 
+        <img src="{% static 'images/bgimg.jpg' %}" class="w-1/2 h-full object-cover scale-110"> 
+        <img src="{% static 'images/backgroundnew.jpg' %}" class="w-1/2 h-full object-cover scale-110"> 
+    </div> 
+ 
+    <div class="absolute inset-0 bg-gradient-to-r from-black via-purple-900/80 to-black z-10"></div> 
+ 
+    <div class="relative z-20 max-w-5xl mx-auto px-6 text-center"> 
+ 
+        <h1 class="text-5xl md:text-6xl font-bold mb-8"> 
+            About <span class="text-orange-500">Gamer's Island</span> 
+        </h1> 
+ 
+        <p class="text-gray-300 text-lg leading-relaxed"> 
+            Gamer's Island is an e-commerce platform built for gamers who want access to high-quality PC games  
+            without overpaying. We focus on delivering a curated collection of titles at fair prices, ensuring  
+            that every purchase feels worthwhile. 
+        </p> 
+ 
+        <p class="text-gray-400 mt-6 text-lg leading-relaxed"> 
+            Our goal is simple — provide a reliable, fast, and user-friendly experience where gamers can explore,  
+            discover, and enjoy their favorite titles without worrying about inflated prices or limited availability. 
+        </p> 
+ 
+    </div> 
+</section> 
+ 
+<!-- FEATURES / WHY US --> 
+<section class="py-24 bg-gradient-to-b from-gray-950 to-gray-900"> 
+    <div class="max-w-6xl mx-auto px-6 text-center"> 
+ 
+        <h2 class="text-4xl font-bold mb-16 text-white">What We Offer</h2> 
+ 
+        <div class="grid md:grid-cols-3 gap-12"> 
+ 
+            <!-- CARD 1 --> 
+            <div class="group p-8 bg-white/10 backdrop-blur rounded-xl border border-white/20  
+                        transition duration-300 hover:scale-105  
+                        hover:shadow-[0_0_30px_rgba(255,115,0,0.35)]"> 
+                <h3 class="text-xl font-semibold text-orange-400 mb-3">Affordable Pricing</h3> 
+                <p class="text-gray-300">We prioritize fair pricing so you get value for every purchase.</p> 
+            </div> 
+ 
+            <!-- CARD 2 --> 
+            <div class="group p-8 bg-white/10 backdrop-blur rounded-xl border border-white/20  
+                        transition duration-300 hover:scale-105  
+                        hover:shadow-[0_0_30px_rgba(236,72,153,0.35)]"> 
+                <h3 class="text-xl font-semibold text-pink-400 mb-3">Wide Selection</h3> 
+                <p class="text-gray-300">A curated collection of popular and classic PC titles.</p> 
+            </div> 
+ 
+            <!-- CARD 3 --> 
+            <div class="group p-8 bg-white/10 backdrop-blur rounded-xl border border-white/20  
+                        transition duration-300 hover:scale-105  
+                        hover:shadow-[0_0_30px_rgba(168,85,247,0.35)]"> 
+                <h3 class="text-xl font-semibold text-purple-400 mb-3">Fast Delivery</h3> 
+                <p class="text-gray-300">Quick and reliable delivery so you can start playing sooner.</p> 
+            </div> 
+ 
+        </div> 
+    </div> 
+</section> 
+ 
+<!-- NEWSLETTER --> 
+<section class="py-24 bg-gray-900"> 
+    <div class="max-w-4xl mx-auto px-6 text-center"> 
+ 
+        <h2 class="text-3xl font-bold mb-6">Stay Updated</h2> 
+ 
+        <p class="text-gray-400 mb-8"> 
+            Get updates on new games, offers, and exclusive deals directly in your inbox. 
+        </p> 
+ 
+        <form method="POST" class="flex flex-col md:flex-row gap-4 justify-center"> 
 
-{% block content %}
+            {% csrf_token %}
 
-<!-- HERO / ABOUT -->
-<section class="relative w-full py-28 overflow-hidden">
-
-    <div class="absolute inset-0 flex z-0 w-full h-full">
-        <img src="{% static 'images/bgimg.jpg' %}" class="w-1/2 h-full object-cover scale-110">
-        <img src="{% static 'images/backgroundnew.jpg' %}" class="w-1/2 h-full object-cover scale-110">
-    </div>
-
-    <div class="absolute inset-0 bg-gradient-to-r from-black via-purple-900/80 to-black z-10"></div>
-
-    <div class="relative z-20 max-w-5xl mx-auto px-6 text-center">
-
-        <h1 class="text-5xl md:text-6xl font-bold mb-8">
-            About <span class="text-orange-500">Gamer's Island</span>
-        </h1>
-
-        <p class="text-gray-300 text-lg leading-relaxed">
-            Gamer's Island is an e-commerce platform built for gamers who want access to high-quality PC games 
-            without overpaying. We focus on delivering a curated collection of titles at fair prices, ensuring 
-            that every purchase feels worthwhile.
-        </p>
-
-        <p class="text-gray-400 mt-6 text-lg leading-relaxed">
-            Our goal is simple — provide a reliable, fast, and user-friendly experience where gamers can explore, 
-            discover, and enjoy their favorite titles without worrying about inflated prices or limited availability.
-        </p>
-
-    </div>
-</section>
-
-<!-- FEATURES / WHY US -->
-<section class="py-24 bg-gradient-to-b from-gray-950 to-gray-900">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-
-        <h2 class="text-4xl font-bold mb-16 text-white">What We Offer</h2>
-
-        <div class="grid md:grid-cols-3 gap-12">
-
-            <!-- CARD 1 -->
-            <div class="group p-8 bg-white/10 backdrop-blur rounded-xl border border-white/20 
-                        transition duration-300 hover:scale-105 
-                        hover:shadow-[0_0_30px_rgba(255,115,0,0.35)]">
-                <h3 class="text-xl font-semibold text-orange-400 mb-3">Affordable Pricing</h3>
-                <p class="text-gray-300">We prioritize fair pricing so you get value for every purchase.</p>
-            </div>
-
-            <!-- CARD 2 -->
-            <div class="group p-8 bg-white/10 backdrop-blur rounded-xl border border-white/20 
-                        transition duration-300 hover:scale-105 
-                        hover:shadow-[0_0_30px_rgba(236,72,153,0.35)]">
-                <h3 class="text-xl font-semibold text-pink-400 mb-3">Wide Selection</h3>
-                <p class="text-gray-300">A curated collection of popular and classic PC titles.</p>
-            </div>
-
-            <!-- CARD 3 -->
-            <div class="group p-8 bg-white/10 backdrop-blur rounded-xl border border-white/20 
-                        transition duration-300 hover:scale-105 
-                        hover:shadow-[0_0_30px_rgba(168,85,247,0.35)]">
-                <h3 class="text-xl font-semibold text-purple-400 mb-3">Fast Delivery</h3>
-                <p class="text-gray-300">Quick and reliable delivery so you can start playing sooner.</p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- NEWSLETTER -->
-<section class="py-24 bg-gray-900">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-
-        <h2 class="text-3xl font-bold mb-6">Stay Updated</h2>
-
-        <p class="text-gray-400 mb-8">
-            Get updates on new games, offers, and exclusive deals directly in your inbox.
-        </p>
-
-        <form class="flex flex-col md:flex-row gap-4 justify-center">
-            <input type="email" placeholder="Enter your email"
-                   class="px-6 py-3 rounded-full bg-gray-800 text-white outline-none w-full md:w-2/3">
-
-            <button type="submit"
-                    class="px-6 py-3 rounded-full bg-orange-500 hover:bg-orange-600 transition font-semibold">
-                Subscribe
-            </button>
-        </form>
-
-    </div>
-</section>
-
-<!-- FOOTER unchanged -->
-<footer class="bg-black border-t border-gray-800 mt-20">
-    <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-12">
-
-        <div>
-            <h3 class="text-lg font-semibold mb-4 text-white">Download Our App</h3>
-            <p class="text-gray-400 mb-4">For Both Android And IOS Devices</p>
-            <div class="flex gap-4">
-                <img src="{% static 'images/playstore.png' %}" class="h-10 hover:scale-110 transition">
-                <img src="{% static 'images/appstore.png' %}" class="h-10 hover:scale-110 transition">
-            </div>
-        </div>
-
-        <div>
-            <h3 class="text-xl font-bold text-orange-500 mb-4">Gamer's Island</h3>
-        </div>
-
-        <div>
-            <h3 class="text-lg font-semibold mb-4 text-white">Useful Links</h3>
-            <ul class="space-y-2 text-gray-400">
-                <li><a href="#" class="hover:text-orange-400">Vouchers</a></li>
-                <li><a href="#" class="hover:text-orange-400">Return Policy</a></li>
-                <li><a href="#" class="hover:text-orange-400">Join Affiliates</a></li>
-            </ul>
-        </div>
-
-        <div>
-            <h3 class="text-lg font-semibold mb-4 text-white">Follow Us</h3>
-            <div class="flex gap-4 text-2xl">
-                <i class="fa-brands fa-facebook hover:text-blue-500"></i>
-                <i class="fa-brands fa-instagram hover:text-pink-500"></i>
-                <i class="fa-brands fa-twitter hover:text-sky-400"></i>
-                <i class="fa-brands fa-linkedin hover:text-blue-400"></i>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="text-center py-6 text-gray-500 text-sm border-t border-gray-800">
-        © 2026 - Gamer's Island
-    </div>
-</footer>
-
+            <input 
+                type="email" 
+                name="email"
+                placeholder="Enter your email"
+                required
+                class="px-6 py-3 rounded-full bg-gray-800 text-white outline-none w-full md:w-2/3"
+            > 
+ 
+            <button type="submit" 
+                    class="px-6 py-3 rounded-full bg-orange-500 hover:bg-orange-600 transition font-semibold"> 
+                Subscribe 
+            </button> 
+ 
+        </form> 
+ 
+    </div> 
+</section> 
+ 
+<!-- FOOTER unchanged --> 
+<footer class="bg-black border-t border-gray-800 mt-20"> 
+    <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-12"> 
+ 
+        <div> 
+            <h3 class="text-lg font-semibold mb-4 text-white">Download Our App</h3> 
+            <p class="text-gray-400 mb-4">For Both Android And IOS Devices</p> 
+            <div class="flex gap-4"> 
+                <img src="{% static 'images/playstore.png' %}" class="h-10 hover:scale-110 transition"> 
+                <img src="{% static 'images/appstore.png' %}" class="h-10 hover:scale-110 transition"> 
+            </div> 
+        </div> 
+ 
+        <div> 
+            <h3 class="text-xl font-bold text-orange-500 mb-4">Gamer's Island</h3> 
+        </div> 
+ 
+        <div> 
+            <h3 class="text-lg font-semibold mb-4 text-white">Useful Links</h3> 
+            <ul class="space-y-2 text-gray-400"> 
+                <li><a href="#" class="hover:text-orange-400">Vouchers</a></li> 
+                <li><a href="#" class="hover:text-orange-400">Return Policy</a></li> 
+                <li><a href="#" class="hover:text-orange-400">Join Affiliates</a></li> 
+            </ul> 
+        </div> 
+ 
+        <div> 
+            <h3 class="text-lg font-semibold mb-4 text-white">Follow Us</h3> 
+            <div class="flex gap-4 text-2xl"> 
+                <i class="fa-brands fa-facebook hover:text-blue-500"></i> 
+                <i class="fa-brands fa-instagram hover:text-pink-500"></i> 
+                <i class="fa-brands fa-twitter hover:text-sky-400"></i> 
+                <i class="fa-brands fa-linkedin hover:text-blue-400"></i> 
+            </div> 
+        </div> 
+ 
+    </div> 
+ 
+    <div class="text-center py-6 text-gray-500 text-sm border-t border-gray-800"> 
+        © 2026 - Gamer's Island 
+    </div> 
+</footer> 
+ 
 {% endblock %}
