@@ -12,7 +12,8 @@
             </h1>
         </div>
 
-        <ul class="hidden md:flex gap-10 text-sm md:text-base font-medium">
+        <!-- DESKTOP NAVIGATION -->
+        <ul class="hidden md:flex gap-10 text-sm md:text-base font-medium items-center">
             <li><a href="{% url 'homepage' %}" class="hover:text-orange-500 transition">Home</a></li>
             <li><a href="{% url 'products' %}" class="hover:text-orange-500 transition">Products</a></li>
             <li><a href="{% url 'about' %}" class="hover:text-orange-500 transition">About</a></li>
@@ -33,5 +34,87 @@
             {% endif %}
         </ul>
 
+        <!-- MOBILE MENU BUTTON -->
+        <button
+            id="mobile-menu-button"
+            type="button"
+            class="md:hidden text-2xl text-gray-300 hover:text-orange-500 transition"
+            aria-label="Open menu"
+            onclick="toggleMobileMenu()"
+        >
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+    </div>
+
+    <!-- MOBILE NAVIGATION -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-800 bg-gray-900/95">
+
+        <ul class="px-6 py-4 space-y-3 text-sm font-medium">
+
+            <li>
+                <a href="{% url 'homepage' %}"
+                   class="block py-2 hover:text-orange-500 transition">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'products' %}"
+                   class="block py-2 hover:text-orange-500 transition">
+                    Products
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'about' %}"
+                   class="block py-2 hover:text-orange-500 transition">
+                    About
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'contact' %}"
+                   class="block py-2 hover:text-orange-500 transition">
+                    Contact
+                </a>
+            </li>
+
+            {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'logout' %}"
+                       class="block py-2 hover:text-orange-500 transition">
+                        Logout
+                    </a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{% url 'login' %}"
+                       class="block py-2 hover:text-orange-500 transition">
+                        Login
+                    </a>
+                </li>
+            {% endif %}
+
+        </ul>
+
     </div>
 </nav>
+
+<script>
+function toggleMobileMenu() {
+    const menu = document.getElementById("mobile-menu");
+    const button = document.getElementById("mobile-menu-button");
+    const icon = button.querySelector("i");
+
+    menu.classList.toggle("hidden");
+
+    if (menu.classList.contains("hidden")) {
+        icon.classList.remove("fa-xmark");
+        icon.classList.add("fa-bars");
+    } else {
+        icon.classList.remove("fa-bars");
+        icon.classList.add("fa-xmark");
+    }
+}
+</script>
