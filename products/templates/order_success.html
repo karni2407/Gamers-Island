@@ -5,34 +5,195 @@
 
 <section class="py-24 bg-gradient-to-b from-gray-950 to-gray-900 min-h-screen">
 
-    <div class="max-w-3xl mx-auto px-6 text-center">
+    <div class="max-w-4xl mx-auto px-6">
 
         <div class="p-10 rounded-xl bg-white/10 border border-white/10 shadow-xl">
 
-            <h1 class="text-5xl font-extrabold text-green-400 mb-6">
-                Order Successful!
-            </h1>
+            <!-- SUCCESS MESSAGE -->
+            <div class="text-center mb-10">
 
-            <p class="text-gray-300 text-lg mb-4">
-                Your order has been placed successfully.
-            </p>
+                <h1 class="text-5xl font-extrabold text-green-400 mb-6">
+                    Order Successful!
+                </h1>
 
-            <p class="text-gray-400 mb-2">
-                Order ID: #{{ order.id }}
-            </p>
+                <p class="text-gray-300 text-lg mb-4">
+                    Your order has been placed successfully.
+                </p>
 
-            <p class="text-gray-400 mb-8">
-                Your order is being processed and will be dispatched soon.
-            </p>
+                <p class="text-gray-400">
+                    Order ID: #{{ order.id }}
+                </p>
 
-            <a
-                href="{% url 'products' %}"
-                class="inline-block px-8 py-3 rounded-lg
-                       bg-orange-500 hover:bg-orange-600
-                       transition duration-300"
-            >
-                Continue Shopping
-            </a>
+                <p class="text-gray-400 mt-2">
+                    Your order is being processed and will be dispatched soon.
+                </p>
+
+            </div>
+
+            <!-- ORDER DETAILS -->
+            <div class="border-t border-white/10 pt-8">
+
+                <h2 class="text-2xl font-bold mb-6">
+                    Order Summary
+                </h2>
+
+                <!-- ORDER INFORMATION -->
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+
+                    <div>
+
+                        <p class="text-gray-400 mb-1">
+                            Order ID
+                        </p>
+
+                        <p class="font-semibold">
+                            #{{ order.id }}
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <p class="text-gray-400 mb-1">
+                            Order Date
+                        </p>
+
+                        <p class="font-semibold">
+                            {{ order.created_at|date:"d M Y, h:i A" }}
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <p class="text-gray-400 mb-1">
+                            Customer Name
+                        </p>
+
+                        <p class="font-semibold">
+                            {{ order.name }}
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <p class="text-gray-400 mb-1">
+                            Phone Number
+                        </p>
+
+                        <p class="font-semibold">
+                            {{ order.phone }}
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <p class="text-gray-400 mb-1">
+                            Payment Method
+                        </p>
+
+                        <p class="font-semibold">
+                            {{ order.payment_method }}
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <p class="text-gray-400 mb-1">
+                            Order Status
+                        </p>
+
+                        <p class="font-semibold text-green-400">
+                            {{ order.status|title }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- DELIVERY ADDRESS -->
+                <div class="mb-8">
+
+                    <p class="text-gray-400 mb-2">
+                        Delivery Address
+                    </p>
+
+                    <p class="font-semibold">
+                        {{ order.address }}
+                    </p>
+
+                </div>
+
+                <!-- PRODUCTS -->
+                <div class="border-t border-white/10 pt-8">
+
+                    <h2 class="text-2xl font-bold mb-6">
+                        Purchased Games
+                    </h2>
+
+                    {% for item in order.items.all %}
+
+                    <div class="flex justify-between items-center py-4 border-b border-white/10">
+
+                        <div>
+
+                            <p class="font-semibold text-lg">
+                                {{ item.product.name }}
+                            </p>
+
+                            <p class="text-gray-400">
+                                ₹{{ item.price }} × {{ item.quantity }}
+                            </p>
+
+                        </div>
+
+                        <span class="text-orange-400 font-semibold">
+                            ₹{{ item.price|floatformat:2 }}
+                        </span>
+
+                    </div>
+
+                    {% empty %}
+
+                    <p class="text-gray-400">
+                        No items found for this order.
+                    </p>
+
+                    {% endfor %}
+
+                </div>
+
+                <!-- TOTAL -->
+                <div class="flex justify-between items-center mt-8 pt-6 border-t border-white/10">
+
+                    <span class="text-2xl font-semibold">
+                        Total
+                    </span>
+
+                    <span class="text-3xl font-bold text-orange-400">
+                        ₹{{ order.total_price }}
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- ACTION -->
+            <div class="text-center mt-10">
+
+                <a
+                    href="{% url 'products' %}"
+                    class="inline-block px-8 py-3 rounded-lg
+                           bg-orange-500 hover:bg-orange-600
+                           transition duration-300"
+                >
+                    Continue Shopping
+                </a>
+
+            </div>
 
         </div>
 

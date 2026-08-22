@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.http import JsonResponse
+from django.core.mail import send_mail
 import re
 
 from .models import Cart, CartItem, Product, Order, OrderItem
@@ -260,6 +261,61 @@ def checkout(request):
         if not buy_now:
 
             cart.items.all().delete()
+
+        # SEND ORDER CONFIRMATION EMAIL
+        if request.user.email:
+
+            order_items_text = ""
+
+            for item in checkout_items:
+
+                if buy_now:
+                    product = item["product"]
+                    quantity = item["quantity"]
+                    price = item["product"].price
+                else:
+                    product = item.product
+                    quantity = item.quantity
+                    price = item.product.price
+
+                order_items_text += (
+                    f"{product.name} - ₹{price} × {quantity} = "
+                    f"₹{price * quantity}\n"
+                )
+
+            email_subject = f"Order Confirmation - Order #{order.id}"
+
+            email_message = f"""
+Hello {request.user.username},
+
+Thank you for your order from Gamer's Island.
+
+Order ID: #{order.id}
+
+Customer Name: {name}
+Phone Number: {phone}
+Payment Method: {payment_method}
+Order Status: Successful
+
+Delivery Address:
+{address}
+
+Purchased Games:
+{order_items_text}
+Total: ₹{total_price}
+
+Your order has been placed successfully.
+
+Thank you for shopping with Gamer's Island!
+"""
+
+            send_mail(
+                email_subject,
+                email_message,
+                None,
+                [request.user.email],
+                fail_silently=False,
+            )
 
         return redirect("order_success", order_id=order.id)
 
